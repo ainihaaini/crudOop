@@ -222,9 +222,6 @@ public class MainFrame extends javax.swing.JFrame {
         SkalaTujuan = cSkalaTujuan.getSelectedItem().toString();
         
         
-        SuhuAsal = Double.parseDouble(tSuhuAsal.getText());
-        SkalaAsal = cSkalaAsal.getSelectedItem().toString();
-        SkalaTujuan = cSkalaTujuan.getSelectedItem().toString();
         if("Celcius".equals(SkalaAsal) &&"Celcius".equals(SkalaTujuan)){
             Output = SuhuAsal;
             lbOutput.setText(String.valueOf(Output));    
