@@ -59,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        cSkalaAsal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celcius", "Fahrenhit", "Kelvin" }));
+        cSkalaAsal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celcius", "Fahrenheit", "Kelvin" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -84,7 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Suhu Tujuan"));
 
-        cSkalaTujuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celcius", "Fahrenhit", "Kelvin" }));
+        cSkalaTujuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celcius", "Fahrenheit", "Kelvin" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,7 +105,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         lbOutput.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
         lbOutput.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbOutput.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -215,41 +214,37 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnKonversiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonversiActionPerformed
         // TODO add your handling code here:
-        double SuhuAsal, Output;
-        String SkalaAsal, SkalaTujuan;
-        SuhuAsal = Double.parseDouble(tSuhuAsal.getText());
-        SkalaAsal = cSkalaAsal.getSelectedItem().toString();
-        SkalaTujuan = cSkalaTujuan.getSelectedItem().toString();
+        if (tSuhuAsal.getText().isEmpty()) {
+            lbOutput.setText("Masukkan suhu dulu");
+            return;
+        }
+        double SuhuAsal = Double.parseDouble(tSuhuAsal.getText());
+        double Output = 0;
+        String SkalaAsal = cSkalaAsal.getSelectedItem().toString();
+        String SkalaTujuan = cSkalaTujuan.getSelectedItem().toString();
         
         
         if("Celcius".equals(SkalaAsal) &&"Celcius".equals(SkalaTujuan)){
-            Output = SuhuAsal;
-            lbOutput.setText(String.valueOf(Output));    
-        }else if ("Celcius".equals(SkalaAsal) &&"Fahrenhit".equals(SkalaTujuan)) {
-            Output = (SuhuAsal * 9/5) + 32 ;
-            lbOutput.setText(String.valueOf(Output));  
+            Output = SuhuAsal;   
+        }else if ("Celcius".equals(SkalaAsal) &&"Fahrenheit".equals(SkalaTujuan)) {
+            Output = (SuhuAsal * 9/5) + 32 ; 
         }else if ("Celcius".equals(SkalaAsal) &&"Kelvin".equals(SkalaTujuan)) {
             Output = SuhuAsal + 273.15;
-            lbOutput.setText(String.valueOf(Output));
-        }else if ("Fahrenhit".equals(SkalaAsal) &&"Fahrenhit".equals(SkalaTujuan)) {
+        }else if ("Fahrenheit".equals(SkalaAsal) &&"Fahrenheit".equals(SkalaTujuan)) {
             Output = SuhuAsal;
-            lbOutput.setText(String.valueOf(Output));
-        }else if ("Fahrenhit".equals(SkalaAsal) &&"Celcius".equals(SkalaTujuan)) {
-            Output = (SuhuAsal - 32) * 5/9 ;
-            lbOutput.setText(String.valueOf(Output));     
-        }else if ("Fahrenhit".equals(SkalaAsal) &&"Kelvin".equals(SkalaTujuan)) {
-            Output = ((SuhuAsal - 32) * 5/9) + 273.15;
-            lbOutput.setText(String.valueOf(Output));       
+        }else if ("Fahrenheit".equals(SkalaAsal) &&"Celcius".equals(SkalaTujuan)) {
+            Output = (SuhuAsal - 32) * 5/9 ;   
+        }else if ("Fahrenheit".equals(SkalaAsal) &&"Kelvin".equals(SkalaTujuan)) {
+            Output = ((SuhuAsal - 32) * 5/9) + 273.15;     
         }else if ("Kelvin".equals(SkalaAsal) &&"Kelvin".equals(SkalaTujuan)) {
-            Output = SuhuAsal;
-            lbOutput.setText(String.valueOf(Output));       
+            Output = SuhuAsal;    
         }else if ("Kelvin".equals(SkalaAsal) &&"Celcius".equals(SkalaTujuan)) {
             Output = SuhuAsal - 273.15;
-            lbOutput.setText(String.valueOf(Output));    
-        }else if ("Kelvin".equals(SkalaAsal) &&"Fahrenhit".equals(SkalaTujuan)) {
-            Output = (SuhuAsal - 273.15) * 9/5 + 32;
-            lbOutput.setText(String.valueOf(Output));    
+        }else if ("Kelvin".equals(SkalaAsal) &&"Fahrenheit".equals(SkalaTujuan)) {
+            Output = (SuhuAsal - 273.15) * 9/5 + 32;   
         }
+        
+        lbOutput.setText(String.format("%.2f", Output));
     }//GEN-LAST:event_btnKonversiActionPerformed
 
     /**
