@@ -309,17 +309,6 @@ public class guru extends javax.swing.JPanel {
         String alamat = tAlamat.getText();
         String jK = null;
         
-        switch (jenisKelamin) {
-            case "Laki - laki":
-                jK = "L";
-                break;
-            case "Perempuan":
-                jK = "P";
-                break;
-            default:
-                jK = null;
-                break;
-        }
         
         String sql = "INSERT INTO guru(nip, nama_guru, gender, alamat) VALUES(?,?,?,?)";
         
@@ -328,7 +317,7 @@ public class guru extends javax.swing.JPanel {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, NIP);
             ps.setString(2, namaGuru);
-            ps.setString(3, jK);
+            ps.setString(3, jenisKelamin);
             ps.setString(4, alamat);
             ps.execute();
             
@@ -349,17 +338,6 @@ public class guru extends javax.swing.JPanel {
         String alamat = tAlamat.getText();
         String jK = null;
         
-        switch (jenisKelamin) {
-            case "Laki - laki":
-                jK = "L";
-                break;
-            case "Perempuan":
-                jK = "P";
-                break;
-            default:
-                jK = null;
-                break;
-        }
         
         String sql = "UPDATE guru SET nama_guru=?, gender=?, alamat=? WHERE nip=?";
         
@@ -367,7 +345,7 @@ public class guru extends javax.swing.JPanel {
             Connection conn = koneksi.konek();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, namaGuru);
-            ps.setString(2, jK);
+            ps.setString(2, jenisKelamin);
             ps.setString(3, alamat);
             ps.setString(4, NIP);
             ps.execute();
